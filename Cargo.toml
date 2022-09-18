@@ -2,6 +2,14 @@
 name = "rock-paper-scissor"
 version = "0.1.0"
 edition = "2021"
+authors = ["Chrys Rakotonimanana"]
+description = "Rock Paper Scissor game"
+license = "MIT"
+repository = "https://github.com/chrys-elrak/rock-paper-scissor"
+readme = "README.md"
+keywords = ["game", "rock", "paper", "scissor"]
+categories = ["game"]
+documentation = "https://github.com/chrys-elrak/rock-paper-scissor#readme"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
