@@ -1,12 +1,12 @@
-mod e_choice;
-mod prompt;
-mod get_choice;
+mod enums;
+mod helpers;
 
 use std::io::Write;
-
-use prompt::input;
 use rand::{self, Rng};
-use  get_choice::{get_choice};
+
+use crate::helpers::get_choice::choice;
+use crate::helpers::get_input::input;
+use crate::helpers::get_winner::winner;
 
 fn main() {
     let user_choice;
@@ -19,17 +19,24 @@ fn main() {
     "
         );
         let s = input("Please choose");
-        user_choice = get_choice(&s);
+        user_choice = choice(&s).unwrap();
         break;
     }
     let x = rand::thread_rng().gen_range(1..4);
-    let computer_choice = get_choice(x.to_string().as_str());
+    let computer_choice = choice(x.to_string().as_str()).unwrap();
     for v in "Loading...".as_bytes().iter() {
-        std::thread::sleep(std::time::Duration::from_millis(100));
+        std::thread::sleep(std::time::Duration::from_millis(50));
         print!("{}", *v as char);
         std::io::stdout().flush().unwrap();
     }
-    println!("\nYou choose: {:?}", { user_choice.unwrap() });
-    println!("I choose: {:?}", { computer_choice.unwrap() });
+    println!("\nYou choose: {:?}", { user_choice.clone() });
+    println!("I choose: {:?}", { computer_choice.clone() });
+    let (user_win, computer_win) = winner(user_choice, computer_choice);
+    if user_win == computer_win {
+        println!("Draw !");
+    } else if computer_win {
+        println!("You lose !");
+    } else {
+        println!("You win !");
+    }
 }
-
