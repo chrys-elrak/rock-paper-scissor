@@ -1,23 +1,24 @@
 mod enums;
 mod helpers;
 
-use std::io::Write;
+use colored::Colorize;
 use rand::{self, Rng};
+use std::io::Write;
 
 use crate::helpers::get_choice::choice;
 use crate::helpers::get_input::input;
 use crate::helpers::get_winner::winner;
 
 fn main() {
+    let header: colored::ColoredString = "
+    (1): Rock
+    (2): Paper
+    (3): Scissor
+    "
+    .black();
     let user_choice;
     loop {
-        println!(
-            "
-        (1): Rock
-        (2): Paper
-        (3): Scissor
-    "
-        );
+        println!("{}", header);
         let s = input("Please choose");
         user_choice = choice(&s).unwrap();
         break;
@@ -29,14 +30,16 @@ fn main() {
         print!("{}", *v as char);
         std::io::stdout().flush().unwrap();
     }
-    println!("\nYou choose: {:?}", { user_choice.clone() });
-    println!("I choose: {:?}", { computer_choice.clone() });
+    let s1 = "\nYou choose:".cyan();
+    let s2 = "I choose:".blue();
+    println!("{} {:?}", s1, user_choice.clone());
+    println!("{} {:?}", s2, computer_choice.clone());
     let (user_win, computer_win) = winner(user_choice, computer_choice);
     if user_win == computer_win {
-        println!("Draw !");
+        println!("{}", "Draw !".yellow());
     } else if computer_win {
-        println!("You lose !");
+        println!("{}", "You lose !".red());
     } else {
-        println!("You win !");
+        println!("{}", "You win !".green());
     }
 }
