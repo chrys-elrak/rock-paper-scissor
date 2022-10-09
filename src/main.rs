@@ -15,6 +15,8 @@ fn main() {
     (1): Rock (default)
     (2): Paper
     (3): Scissor
+    (4): Spock
+    (5): Lizard
     "
         .black();
         let user_choice;
