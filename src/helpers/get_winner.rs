@@ -1,3 +1,5 @@
+use colored::Colorize;
+
 use crate::enums::choice::Choice::{*, self};
 /*
 * First return is for user, the last for computer
@@ -13,6 +15,17 @@ pub fn winner(user_choice: Choice, computer_choice: Choice) -> (bool, bool) {
         (SCISSOR, SCISSOR) => (true, true),
         (ROCK, ROCK) => (true, true),
         (PAPER, PAPER) => (true, true),
+    }
+}
+
+pub fn message(winner: (bool, bool)) {
+    let (user, computer) = winner;
+    if user == computer {
+        println!("{}", "Draw !".yellow());
+    } else if computer {
+        println!("{}", "You lose !".red());
+    } else {
+        println!("{}", "You win !".green());
     }
 }
 
