@@ -6,10 +6,11 @@ use rand::{self, Rng};
 
 use crate::helpers::get_choice::choice;
 use crate::helpers::get_input::input;
-use crate::helpers::get_winner::{winner, message};
+use crate::helpers::get_winner::{message, winner};
 use crate::helpers::show_loader::loading;
 
 fn main() {
+    let mut score = 0;
     loop {
         let header: colored::ColoredString = "
     (1): Rock (default)
@@ -18,7 +19,7 @@ fn main() {
     (4): Spock
     (5): Lizard
     "
-        .black();
+        .yellow();
         let user_choice;
         println!("{}", header);
         let s = input("Please choose");
@@ -30,9 +31,20 @@ fn main() {
         let s2 = "I choose:".blue();
         println!("{} {:?}", s1, user_choice.clone());
         println!("{} {:?}", s2, computer_choice.clone());
-        message(winner(user_choice, computer_choice));
-        let s = input("Do you want to play again ? (y/N)");
-        if s.to_lowercase() != "y" {
+        let win = winner(user_choice, computer_choice);
+        match win {
+            (true, false) => score += 1,
+            (false, true) => score -= 1,
+            _ => (),
+        }
+        message(win);
+        if score <= 0 {
+            println!("You lost the game !");
+            score = 0;
+        }
+        let s = input("Do you want to play again ? (Y/n)");
+        if s.to_lowercase() == "n" {
+            println!("Your score: {}", score);
             break;
         }
     }
