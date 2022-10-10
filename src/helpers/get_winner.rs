@@ -76,10 +76,92 @@ fn user_paper_wraps_rock() {
 fn computer_paper_wraps_rock() {
     assert_eq!(winner(ROCK, PAPER), (false, true));
 }
+#[test]
+fn user_rock_crushes_lizard() {
+    assert_eq!(winner(ROCK, LIZARD), (true, false));
+}
+
+#[test]
+fn computer_rock_crushes_lizard() {
+    assert_eq!(winner(LIZARD, ROCK), (false, true));
+}
+
+#[test]
+fn user_lizard_poisons_spock() {
+    assert_eq!(winner(LIZARD, SPOCK), (false, true));
+}
+
+#[test]
+fn computer_lizard_poisons_spock() {
+    assert_eq!(winner(SPOCK, LIZARD), (true, false));
+}
+
+#[test]
+fn user_lizard_eats_paper() {
+    assert_eq!(winner(LIZARD, PAPER), (true, false));
+}
+
+#[test]
+fn computer_lizard_eats_paper() {
+    assert_eq!(winner(PAPER, LIZARD), (false, true));
+}
+
+#[test]
+fn user_spock_smashes_scissors() {
+    assert_eq!(winner(SPOCK, SCISSOR), (false, true));
+}
+
+#[test]
+fn computer_spock_smashes_scissors() {
+    assert_eq!(winner(SCISSOR, SPOCK), (true, false));
+}
+
+#[test]
+fn user_spock_vaporizes_rock() {
+    assert_eq!(winner(SPOCK, ROCK), (false, true));
+}
+
+#[test]
+fn computer_spock_vaporizes_rock() {
+    assert_eq!(winner(ROCK, SPOCK), (true, false));
+}
+
+#[test]
+fn user_spock_disproves_lizard() {
+    assert_eq!(winner(SPOCK, LIZARD), (true, false));
+}
+
+#[test]
+fn computer_spock_disproves_lizard() {
+    assert_eq!(winner(LIZARD, SPOCK), (false, true));
+}
+
+#[test]
+fn user_scissors_decapitates_lizard() {
+    assert_eq!(winner(SCISSOR, LIZARD), (true, false));
+}
+
+#[test]
+fn computer_scissors_decapitates_lizard() {
+    assert_eq!(winner(LIZARD, SCISSOR), (false, true));
+}
+
+#[test]
+fn user_paper_disproves_spock() {
+    assert_eq!(winner(PAPER, SPOCK), (false, true));
+}
+
+#[test]
+fn computer_paper_disproves_spock() {
+    assert_eq!(winner(SPOCK, PAPER), (true, false));
+}
+
 
 #[test]
 fn same_choice_is_draw() {
     assert_eq!(winner(ROCK, ROCK), (true, true));
     assert_eq!(winner(PAPER, PAPER), (true, true));
     assert_eq!(winner(SCISSOR, SCISSOR), (true, true));
+    assert_eq!(winner(LIZARD, LIZARD), (true, true));
+    assert_eq!(winner(SPOCK, SPOCK), (true, true));
 }
