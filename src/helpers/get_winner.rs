@@ -4,82 +4,173 @@ use crate::enums::choice::Choice::{*, self};
 // The first argument is the user's choice, the second is the computer's choice
 // TODO: Use the graph to determine the winner instead of this function
 // Link: https://medium.com/@jp.mfichtl/rock-paper-scissors-lizard-spock-or-why-math-is-awesome-for-coding-405dabe30f4
-pub fn winner(user_choice: Choice, computer_choice: Choice) -> (bool, bool) {
+pub fn winner(user_choice: &Choice, computer_choice: &Choice) -> Option<bool> {
     match (user_choice, computer_choice) {
-        (ROCK, SCISSOR)    => (true, false),
-        (SCISSOR, ROCK)    => (false, true),
-        (SCISSOR, PAPER)   => (true, false),
-        (PAPER, SCISSOR)   => (false, true),
-        (PAPER, ROCK)      => (true, false),
-        (ROCK, PAPER)      => (false, true),
-        (SCISSOR, SCISSOR) => (true, true),
-        (ROCK, ROCK)       => (true, true),
-        (PAPER, PAPER)     => (true, true),
-        (LIZARD, SPOCK)    => (false, true),
-        (SPOCK, LIZARD)    => (true, false),
-        (LIZARD, PAPER)    => (true, false),
-        (PAPER, LIZARD)    => (false, true),
-        (LIZARD, ROCK)     => (false, true),
-        (ROCK, LIZARD)     => (true, false),
-        (SPOCK, SCISSOR)   => (false, true),
-        (SCISSOR, SPOCK)   => (true, false),
-        (SPOCK, ROCK)      => (false, true),
-        (ROCK, SPOCK)      => (true, false),
-        (SPOCK, PAPER)     => (true, false),
-        (PAPER, SPOCK)     => (false, true),
-        (SCISSOR, LIZARD)  => (true, false),
-        (SPOCK, SPOCK)     => (true, true),
-        (LIZARD, LIZARD)   => (true, true),
-        (LIZARD, SCISSOR)  => (false, true),
+        (&ROCK, &SCISSOR)    => Some(true),
+        (&ROCK, &LIZARD)     => Some(true),
+        (&ROCK, &PAPER)      => Some(false),
+        (&ROCK, &SPOCK)      => Some(false),
+        (&ROCK, &ROCK)       => None,
+
+        (&SCISSOR, &PAPER)   => Some(true),
+        (&SCISSOR, &LIZARD)  => Some(true),
+        (&SCISSOR, &ROCK)    => Some(false),
+        (&SCISSOR, &SPOCK)   => Some(false),
+        (&SCISSOR, &SCISSOR) => None,
+        
+        (&PAPER, &ROCK)      => Some(true),
+        (&PAPER, &SPOCK)     => Some(true),
+        (&PAPER, &SCISSOR)   => Some(false),
+        (&PAPER, &LIZARD)    => Some(false),
+        (&PAPER, &PAPER)     => None,
+
+        (&LIZARD, &PAPER)    => Some(true), 
+        (&LIZARD, &SPOCK)    => Some(true),
+        (&LIZARD, &ROCK)     => Some(false),
+        (&LIZARD, &SCISSOR)  => Some(false), 
+        (&LIZARD, &LIZARD)   => None,
+        
+        (&SPOCK, &SCISSOR)   => Some(true),
+        (&SPOCK, &ROCK)      => Some(true),
+        (&SPOCK, &LIZARD)    => Some(false),
+        (&SPOCK, &PAPER)     => Some(false),
+        (&SPOCK, &SPOCK)     => None,
     }
 }
 
-pub fn message(winner: (bool, bool)) {
-    let (user, computer) = winner;
-    if user == computer {
-        println!("{}", "Draw !".yellow());
-    } else if computer {
-        println!("{}", "You lose !".red());
-    } else {
-        println!("{}", "You win !".green());
+pub fn message(winner: Option<bool>) {
+    match winner {
+        Some(true) => println!("{}", "You win !".green()),
+        Some(false) => println!("{}", "You loose !".red()),
+        None =>  println!("{}", "Draw !".yellow()),
     }
 }
+
+// Rock sharpens Scissors
+// Rock crushes Lizard
+
+// Scissors cuts Paper
+// Scissors decapitates Lizard
+
+// Paper wraps Rock
+// Paper disproves Spock
+
+// Lizard poisons Spock
+// Lizard eats Paper
+
+// Spock smashes Scissors
+// Spock vaporizes Rock
+
 
 #[cfg(test)]
 #[test]
 fn user_rock_sharpens_sissors() {
-    assert_eq!(winner(ROCK, SCISSOR), (true, false));
+    assert_eq!(winner(&ROCK, &SCISSOR), Some(true));
+}
+
+#[test]
+fn user_rock_crushes_lizard() {
+    assert_eq!(winner(&ROCK, &LIZARD), Some(true));
 }
 
 #[test]
 fn computer_rock_sharpens_sissors() {
-    assert_eq!(winner(SCISSOR, ROCK), (false, true));
+    assert_eq!(winner(&SCISSOR, &ROCK), Some(false));
+}
+
+#[test]
+fn computer_rock_crushes_lizard() {
+    assert_eq!(winner(&LIZARD, &ROCK), Some(false));
 }
 
 #[test]
 fn user_scissors_cut_paper() {
-    assert_eq!(winner(SCISSOR, PAPER), (true, false));
-   
+    assert_eq!(winner(&SCISSOR, &PAPER), Some(true));
+}
+
+#[test]
+fn user_scissors_decapites_lizard() {
+    assert_eq!(winner(&SCISSOR, &LIZARD), Some(true));
 }
 
 #[test]
 fn computer_scissors_cut_paper() {
-    assert_eq!(winner(PAPER, SCISSOR), (false, true));
+    assert_eq!(winner(&PAPER, &SCISSOR), Some(false));
+}
+
+#[test]
+fn computer_scissors_decapitates_lizard() {
+    assert_eq!(winner(&LIZARD, &SCISSOR), Some(false));
 }
 
 #[test]
 fn user_paper_wraps_rock() {
-    assert_eq!(winner(PAPER, ROCK), (true, false));
+    assert_eq!(winner(&PAPER, &ROCK), Some(true));
+}
+
+#[test]
+fn user_paper_disproves_spock() {
+    assert_eq!(winner(&PAPER, &SPOCK), Some(true));
 }
 
 #[test]
 fn computer_paper_wraps_rock() {
-    assert_eq!(winner(ROCK, PAPER), (false, true));
+    assert_eq!(winner(&ROCK, &PAPER), Some(false));
 }
 
 #[test]
+fn computer_paper_disproves_spock() {
+    assert_eq!(winner(&SPOCK, &PAPER), Some(false));
+}
+
+#[test]
+fn user_lizard_poisens_spock() {
+    assert_eq!(winner(&LIZARD, &SPOCK), Some(true));
+}
+
+#[test]
+fn user_lizard_eats_paper() {
+    assert_eq!(winner(&LIZARD, &PAPER), Some(true));
+}
+
+#[test]
+fn computer_lizard_poisens_spock() {
+    assert_eq!(winner(&SPOCK, &LIZARD), Some(false));
+}
+
+#[test]
+fn computer_lizard_eats_paper() {
+    assert_eq!(winner(&PAPER, &LIZARD), Some(false));
+}
+
+#[test]
+fn user_spock_vaporizes_rock() {
+    assert_eq!(winner(&SPOCK, &ROCK), Some(true));
+}
+
+#[test]
+fn user_spock_smashes_scissors() {
+    assert_eq!(winner(&SPOCK, &SCISSOR), Some(true));
+}
+
+#[test]
+fn computer_spock_vaporizes_rock() {
+    assert_eq!(winner(&ROCK, &SPOCK), Some(false));
+}
+
+#[test]
+fn computer_spock_smashes_scissors() {
+    assert_eq!(winner(&SCISSOR, &SPOCK), Some(false));
+}
+
+
+#[test]
 fn same_choice_is_draw() {
-    assert_eq!(winner(ROCK, ROCK), (true, true));
-    assert_eq!(winner(PAPER, PAPER), (true, true));
-    assert_eq!(winner(SCISSOR, SCISSOR), (true, true));
+    assert_eq!(winner(&ROCK, &ROCK), None);
+    assert_eq!(winner(&PAPER, &PAPER), None);
+    assert_eq!(winner(&SCISSOR, &SCISSOR), None);
+    assert_eq!(winner(&LIZARD, &LIZARD), None);
+    assert_eq!(winner(&SPOCK, &SPOCK), None);
+
+
 }
