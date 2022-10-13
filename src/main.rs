@@ -27,7 +27,7 @@ fn main() {
     (5): Lizard
     Any other key to end the game
     "
-        .black();
+        .yellow();
         let user_choice;
         println!("{}", header);
         let s = input("Please choose");

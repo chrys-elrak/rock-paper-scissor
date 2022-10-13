@@ -171,6 +171,4 @@ fn same_choice_is_draw() {
     assert_eq!(winner(&SCISSOR, &SCISSOR), None);
     assert_eq!(winner(&LIZARD, &LIZARD), None);
     assert_eq!(winner(&SPOCK, &SPOCK), None);
-
-
 }
