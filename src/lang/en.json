@@ -1,7 +1,8 @@
 {
-    "ROCK": "Rock",
-    "PAPER": "Paper",
-    "SCISSORS": "Scissors",
-    "SPOCK": "Spock",
-    "LIZARD": "Lizard"
+    "ROCK": "Rock 🪨",
+    "PAPER": "Paper 🧻",
+    "SCISSORS": "Scissors ✂️",
+    "SPOCK": "Spock 🖖",
+    "LIZARD": "Lizard 🦎",
+    "EXIT": "Exit 🚪"
 }
