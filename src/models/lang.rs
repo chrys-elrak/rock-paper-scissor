@@ -3,7 +3,8 @@ use serde::{Deserialize};
 
 pub enum AvalaibleLang {
     EN,
-    FR
+    FR,
+    MG
 }
 
 #[derive(Debug, Deserialize, Clone)]
@@ -22,6 +23,7 @@ impl Lang {
         let file = match lang {
             AvalaibleLang::EN => "src/lang/en.json",
             AvalaibleLang::FR => "src/lang/fr.json",
+            AvalaibleLang::MG => "src/lang/mg.json",
         };
         let file = fs::read_to_string(file).expect("Something went wrong reading the file");
         let l: Lang = serde_json::from_str(&file).expect("Something went wrong parsing the file");

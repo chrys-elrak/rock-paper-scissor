@@ -20,9 +20,10 @@ struct Stats {
 
 fn main() {
     let mut stats = Stats::default();
-    let lang = match input("Choose your language: [fr/EN]").as_str() {
+    let lang = match input("Choose your language: [fr/mg/EN]").as_str() {
         "en" => Lang::new(AvalaibleLang::EN),
         "fr" => Lang::new(AvalaibleLang::FR),
+        "mg" => Lang::new(AvalaibleLang::MG),
         _ => Lang::new(AvalaibleLang::EN),
     };
     let items = Item::new(lang.clone());
