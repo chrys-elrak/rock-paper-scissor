@@ -34,12 +34,11 @@ fn main() {
         user_choice = match choice(&s) {
             Some(choice) => choice,
             None => {
-                println!("No choice given, ending game.");
+                println!("Input not recognized, ending game.");
                 break
             }
         };
         let x = rand::thread_rng().gen_range(1..6);
-        println!("{}", x);
         let computer_choice = choice(x.to_string().as_str()).unwrap();
         loading("Loading...", 100);
         let s1 = "\nYou choose:".cyan();
