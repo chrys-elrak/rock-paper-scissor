@@ -6,7 +6,7 @@ pub enum AvalaibleLang {
     FR
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Clone)]
 #[serde(rename_all = "UPPERCASE")]
 pub struct Lang {
     pub rock: String,
