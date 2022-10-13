@@ -1,13 +1,15 @@
 mod enums;
 mod helpers;
-
+mod models;
 use colored::Colorize;
 use rand::{self, Rng};
 
 use crate::helpers::get_choice::choice;
 use crate::helpers::get_input::input;
+use crate::models::item::Item;
 use crate::helpers::get_winner::{message, winner};
 use crate::helpers::show_loader::loading;
+use crate::models::lang::{Lang, AvalaibleLang};
 
 #[derive(Default, Debug)]
 struct Stats {
@@ -18,19 +20,25 @@ struct Stats {
 
 fn main() {
     let mut stats = Stats::default();
+    let lang = match input("Choose your language: [fr/EN]").as_str() {
+        "en" => Lang::new(AvalaibleLang::EN),
+        "fr" => Lang::new(AvalaibleLang::FR),
+        _ => Lang::new(AvalaibleLang::EN),
+    };
+    let items = Item::new(lang.clone());
+    let mut header = String::new();
+    items
+    .iter()
+    .for_each(|item| {
+        let t = format!("({}) {}\n", item.id, item.name );
+        header.push_str(t.as_str());
+    });
+    header.push_str(lang.exit.as_str());
+    let header = header.yellow();
     loop {
-        let header: colored::ColoredString = "
-    (1): Rock
-    (2): Paper
-    (3): Scissor
-    (4): Spock
-    (5): Lizard
-    Any other key to end the game
-    "
-        .yellow();
         let user_choice;
         println!("{}", header);
-        let s = input("Please choose");
+        let s = input("🤔 Please choose");
         user_choice = match choice(&s) {
             Some(choice) => choice,
             None => {
