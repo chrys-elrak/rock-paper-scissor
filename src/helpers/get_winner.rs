@@ -119,8 +119,56 @@ fn computer_paper_wraps_rock() {
 }
 
 #[test]
+fn computer_paper_disproves_spock() {
+    assert_eq!(winner(&SPOCK, &PAPER), Some(false));
+}
+
+#[test]
+fn user_lizard_poisens_spock() {
+    assert_eq!(winner(&LIZARD, &SPOCK), Some(true));
+}
+
+#[test]
+fn user_lizard_eats_paper() {
+    assert_eq!(winner(&LIZARD, &PAPER), Some(true));
+}
+
+#[test]
+fn computer_lizard_poisens_spock() {
+    assert_eq!(winner(&SPOCK, &LIZARD), Some(false));
+}
+
+#[test]
+fn computer_lizard_eats_paper() {
+    assert_eq!(winner(&PAPER, &LIZARD), Some(false));
+}
+
+#[test]
+fn user_spock_vaporizes_rock() {
+    assert_eq!(winner(&SPOCK, &ROCK), Some(true));
+}
+
+#[test]
+fn user_spock_smashes_scissors() {
+    assert_eq!(winner(&SPOCK, &SCISSOR), Some(true));
+}
+
+#[test]
+fn computer_spock_vaporizes_rock() {
+    assert_eq!(winner(&ROCK, &SPOCK), Some(false));
+}
+
+#[test]
+fn computer_spock_smashes_scissors() {
+    assert_eq!(winner(&SCISSOR, &SPOCK), Some(false));
+}
+
+
+#[test]
 fn same_choice_is_draw() {
     assert_eq!(winner(&ROCK, &ROCK), None);
     assert_eq!(winner(&PAPER, &PAPER), None);
     assert_eq!(winner(&SCISSOR, &SCISSOR), None);
+    assert_eq!(winner(&LIZARD, &LIZARD), None);
+    assert_eq!(winner(&SPOCK, &SPOCK), None);
 }
