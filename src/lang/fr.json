@@ -13,8 +13,8 @@
     "DRAW": " Egalité",
     "WELCOME": "🎮 Bienvenue au jeu de 'Pierre, Feuille, Ciseaux' 🎮",
     "LOADING": "Chargement...",
-    "I_CHOOSE": "Vous avez choisi",
-    "YOU_CHOOSE": "J'ai choisi",
+    "YOU_CHOOSE": "Vous avez choisi",
+    "I_CHOOSE": "J'ai choisi",
     "INPUT_NOT_RECOGNIZED": "❌ Enter non reconnue! ❌",
     "GIVE_INPUT": "🤔 Enter votre choix"
 
