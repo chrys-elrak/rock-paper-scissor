@@ -4,5 +4,12 @@
     "SCISSORS": "Hety ✂️",
     "SPOCK": "Spock 🖖",
     "LIZARD": "Katsatsaka 🦎",
-    "EXIT": "Hivoaka 🚪"
+    "EXIT": "Hivoaka 🚪 [y/N]",
+    "YOU": "Ianao",
+    "COMPUTER": "Solosaina",
+    "WIN": "Mandresy",
+    "LOSE": "Resy",
+    "DRAW": "Sahala",
+    "WELCOME": "Tongasoa eto amin'ny Vato Taratasy Hery Spock Katsatsaka!",
+    "LOADING": "Miandrasa kely..."
 }
