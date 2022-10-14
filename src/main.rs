@@ -4,7 +4,6 @@ mod models;
 use std::process;
 
 use colored::Colorize;
-use models::stats;
 use rand::{self, Rng};
 
 use crate::helpers::{
