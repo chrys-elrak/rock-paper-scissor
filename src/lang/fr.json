@@ -13,5 +13,6 @@
     "WELCOME": "Bienvenue au jeu de Pierre, Feuille, Ciseaux, Spock, Lézard !",
     "LOADING": "Chargement...",
     "I_CHOOSE": "Vous avez choisi",
-    "YOU_CHOOSE": "J'ai choisi"
+    "YOU_CHOOSE": "J'ai choisi",
+    "INPUT_NOT_RECOGNIZED": "❌ Enter non reconnue! ❌"
 }

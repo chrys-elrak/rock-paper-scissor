@@ -25,6 +25,8 @@ pub struct Lang {
     pub welcome: String,
     pub i_choose: String,
     pub you_choose: String,
+    #[serde(alias = "INPUT_NOT_RECOGNIZED")]
+    pub input_failed: String,
 }
 
 impl Lang {

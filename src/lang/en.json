@@ -13,5 +13,6 @@
     "WELCOME": "Welcome to Rock Paper Scissors Spock Lizard",
     "LOADING": "Loading...",
     "I_CHOOSE": "I choose",
-    "YOU_CHOOSE": "You choose"
+    "YOU_CHOOSE": "You choose",
+    "INPUT_NOT_RECOGNIZED": "❌ Input not recognized! ❌"
 }
