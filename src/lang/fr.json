@@ -4,5 +4,12 @@
     "SCISSORS": "Ciseaux ✂️",
     "SPOCK": "Spock 🖖",
     "LIZARD": "Lézard 🦎",
-    "EXIT": "Quitter 🚪"
+    "EXIT": "Quitter 🚪 [y/N]",
+    "YOU": "Vous",
+    "COMPUTER": "Ordinateur",
+    "WIN": "Gagne",
+    "LOSE": "Perd",
+    "DRAW": "Egalité",
+    "WELCOME": "Bienvenue au jeu de Pierre, Feuille, Ciseaux, Spock, Lézard !",
+    "LOADING": "Chargement..."
 }
