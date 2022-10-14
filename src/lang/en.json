@@ -14,5 +14,6 @@
     "LOADING": "Loading...",
     "I_CHOOSE": "I choose",
     "YOU_CHOOSE": "You choose",
-    "INPUT_NOT_RECOGNIZED": "❌ Input not recognized! ❌"
+    "INPUT_NOT_RECOGNIZED": "❌ Input not recognized! ❌",
+    "GIVE_INPUT": "🤔 Please give your input"
 }

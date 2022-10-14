@@ -14,5 +14,7 @@
     "LOADING": "Chargement...",
     "I_CHOOSE": "Vous avez choisi",
     "YOU_CHOOSE": "J'ai choisi",
-    "INPUT_NOT_RECOGNIZED": "❌ Enter non reconnue! ❌"
+    "INPUT_NOT_RECOGNIZED": "❌ Enter non reconnue! ❌",
+    "GIVE_INPUT": "🤔 Enter votre choix"
+
 }
