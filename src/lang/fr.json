@@ -1,15 +1,21 @@
 {
     "ROCK": "Pierre 🪨",
     "PAPER": "Feuille 🧻",
-    "SCISSORS": "Ciseaux ✂️",
+    "SCISSORS": "Ciseaux ✂️ ",
     "SPOCK": "Spock 🖖",
     "LIZARD": "Lézard 🦎",
     "EXIT": "Quitter 🚪 [y/N]",
     "YOU": "Vous",
     "COMPUTER": "Ordinateur",
-    "WIN": "Gagne",
-    "LOSE": "Perd",
-    "DRAW": "Egalité",
-    "WELCOME": "Bienvenue au jeu de Pierre, Feuille, Ciseaux, Spock, Lézard !",
-    "LOADING": "Chargement..."
+    "WIN": "Vous avez gagné! 🎉",
+    "LOSE": "Vous avez perdu! 😭",
+    "DRAW_MESSAGE": "On est a égalité 🤝",
+    "DRAW": " Egalité",
+    "WELCOME": "🎮 Bienvenue au jeu de 'Pierre, Feuille, Ciseaux' 🎮",
+    "LOADING": "Chargement...",
+    "I_CHOOSE": "Vous avez choisi",
+    "YOU_CHOOSE": "J'ai choisi",
+    "INPUT_NOT_RECOGNIZED": "❌ Enter non reconnue! ❌",
+    "GIVE_INPUT": "🤔 Enter votre choix"
+
 }

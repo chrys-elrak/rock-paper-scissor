@@ -1,15 +1,20 @@
 {
     "ROCK": "Vato 🪨",
     "PAPER": "Taratasy 🧻",
-    "SCISSORS": "Hety ✂️",
+    "SCISSORS": "✂️ ",
     "SPOCK": "Spock 🖖",
     "LIZARD": "Katsatsaka 🦎",
     "EXIT": "Hivoaka 🚪 [y/N]",
     "YOU": "Ianao",
     "COMPUTER": "Solosaina",
-    "WIN": "Mandresy",
-    "LOSE": "Resy",
+    "WIN": "Nandresy ianao! 🎉",
+    "LOSE": "Resy ianao! 😭",
+    "DRAW_MESSAGE": "Sahala isika 🤝",
     "DRAW": "Sahala",
-    "WELCOME": "Tongasoa eto amin'ny Vato Taratasy Hery Spock Katsatsaka!",
-    "LOADING": "Miandrasa kely..."
+    "WELCOME": "🎮 Tongasoa eto amin'ny lalao 'Vato, Taratasy, Hety' 🎮",
+    "LOADING": "Miandrasa kely...",
+    "I_CHOOSE": "Izaho nisafidy",
+    "YOU_CHOOSE": "Ianao nisafidy",
+    "INPUT_NOT_RECOGNIZED": "❌ Tsy fantatra ny zavatra nampidirinao ❌",
+    "GIVE_INPUT": "🤔 Ampidiro ny safidinao"
 }
