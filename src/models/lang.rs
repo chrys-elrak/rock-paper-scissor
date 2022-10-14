@@ -16,6 +16,13 @@ pub struct Lang {
     pub spock: String,
     pub lizard: String,
     pub exit: String,
+    pub loading:String,
+    pub you: String,
+    pub computer: String,
+    pub draw: String,
+    pub win: String,
+    pub lose: String,
+    pub welcome: String,
 }
 
 impl Lang {
@@ -28,5 +35,11 @@ impl Lang {
         let file = fs::read_to_string(file).expect("Something went wrong reading the file");
         let l: Lang = serde_json::from_str(&file).expect("Something went wrong parsing the file");
         l
+    }
+}
+
+impl Default for Lang {
+    fn default() -> Self {
+        Lang::new(AvalaibleLang::EN)
     }
 }
