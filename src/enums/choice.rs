@@ -1,4 +1,5 @@
 use std::fmt::{Formatter, Display};
+use crate::models::lang::Lang;
 
 #[derive(Debug)]
 #[derive(PartialEq)]
@@ -27,4 +28,17 @@ impl Display for Choice {
             Choice::LIZARD => write!(f, "5"),
         }
     }    
+}
+
+impl Choice {
+    pub fn get_string_from_id(choice: &Self, lang: &Lang) -> String {
+        let lang = lang.to_owned();
+        match choice {
+            Self::ROCK => lang.rock,
+            Self::PAPER => lang.paper,
+            Self::SCISSOR => lang.scissors,
+            Self::SPOCK => lang.spock,
+            Self::LIZARD => lang.lizard,
+        }
+    }
 }
