@@ -19,3 +19,17 @@ impl Display for Stats {
         )
     }
 }
+
+impl Stats {
+    pub fn update_stats(&mut self, result: Option<bool>){
+        match result {
+            Some(true) => self.user += 1,
+            Some(false) => self.computer += 1,
+            None => self.draws += 1,
+        }
+    }
+    
+    pub fn show(self) {
+        println!("{}", self);
+    }
+}
