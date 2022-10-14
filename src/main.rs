@@ -9,7 +9,7 @@ use rand::{self, Rng};
 
 use crate::enums::choice::Choice;
 use crate::helpers::{
-    get_choice::choice, get_input::input, get_winner::message, show_loader::loading,
+    get_choice::choice, get_input::input, get_winner::message,
 };
 use crate::models::{element::Element, lang::Lang, stats::Stats};
 
