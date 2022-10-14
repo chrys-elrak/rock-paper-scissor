@@ -41,4 +41,15 @@ impl Choice {
             Self::LIZARD => lang.lizard,
         }
     }
+
+    pub fn get_choice_from_id(choice: &str) -> Option<Self> {
+        match choice {
+            "1" => Some(Self::ROCK),
+            "2" => Some(Self::PAPER),
+            "3" => Some(Self::SCISSOR),
+            "4" => Some(Self::SPOCK),
+            "5" => Some(Self::LIZARD),
+            _ => None,
+        }
+    }
 }
