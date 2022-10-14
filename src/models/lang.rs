@@ -32,6 +32,8 @@ pub struct Lang {
     pub computer: String,
     #[serde(alias = "DRAW")]
     pub draw: String,
+    #[serde(alias = "DRAW_MESSAGE")]
+    pub draw_message: String,
     #[serde(alias = "WIN")]
     pub win: String,
     #[serde(alias = "LOSE")]
