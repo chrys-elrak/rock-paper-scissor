@@ -1,66 +1,82 @@
 mod enums;
 mod helpers;
 mod models;
+use std::process;
+
 use colored::Colorize;
+use models::stats;
 use rand::{self, Rng};
 
-use crate::helpers::get_choice::choice;
-use crate::helpers::get_input::input;
-use crate::models::item::Item;
-use crate::helpers::get_winner::{message, winner};
-use crate::helpers::show_loader::loading;
-use crate::models::lang::{Lang, AvalaibleLang};
-
-#[derive(Default, Debug)]
-struct Stats {
-    user: usize,
-    computer: usize,
-    draws: usize,
-}
+use crate::helpers::{
+    get_choice::choice,
+    get_input::input,
+    get_winner::message,
+    show_loader::loading,
+};
+use crate::models::{
+    element::Element,
+    lang::{AvalaibleLang, Lang},
+    stats::Stats,
+};
 
 fn main() {
-    let mut stats = Stats::default();
+
+    // Get the language
     let lang = match input("Choose your language: [fr/mg/EN]").as_str() {
         "en" => Lang::new(AvalaibleLang::EN),
         "fr" => Lang::new(AvalaibleLang::FR),
         "mg" => Lang::new(AvalaibleLang::MG),
         _ => Lang::new(AvalaibleLang::EN),
     };
-    let items = Item::new(lang.clone());
-    let mut header = String::new();
-    items
-    .iter()
-    .for_each(|item| {
-        let t = format!("({}) {}\n", item.id, item.name );
-        header.push_str(t.as_str());
-    });
-    header.push_str(lang.exit.as_str());
-    let header = header.yellow();
+    let mut stats = Stats{
+        computer: 0,
+        user: 0,
+        draws: 0,
+        lang: lang.to_owned(),
+    };
+    let e = Element::new(&lang);
+    // Show the header
+    let header: Vec<String> = e
+        .items
+        .iter()
+        .map(|item| format!("({}) {}", item.id, item.name))
+        .collect();
+    let header = header.join('\n'.to_string().as_str());
     loop {
         let user_choice;
-        println!("{}", header);
-        let s = input("🤔 Please choose");
-        user_choice = match choice(&s) {
-            Some(choice) => choice,
-            None => {
-                println!("Input not recognized, ending game.");
-                break
-            }
-        };
+        'GETINPUT: loop {
+            println!("{}", header);
+            let c = choice(&input("🤔 Please make you choice"));
+            // Get the user input and check if it's a valid choice
+            user_choice = match c {
+                Some(choice) => choice,
+                None => {
+                    let err = "\n❌ Input not recognized!\n".red();
+                    println!("{}", err);
+                    exit(&lang, &stats);
+                    continue 'GETINPUT;
+                }
+            };
+            break 'GETINPUT;
+        }
         let x = rand::thread_rng().gen_range(1..6);
         let computer_choice = choice(x.to_string().as_str()).unwrap();
         loading("Loading...", 100);
-        let s1 = "\nYou choose:".cyan();
-        let s2 = "I choose:".blue();
-        println!("{} {:?}", &s1, &user_choice);
-        println!("{} {:?}", &s2, &computer_choice);
-        match winner(&user_choice, &computer_choice) {
-            Some(true) => stats.user += 1,
-            Some(false) => stats.computer += 1,
-            None => stats.draws += 1,
-        }
-        message(winner(&user_choice, &computer_choice));
+        println!(
+            "\nYou choose: {} and I choose: {}",
+            &user_choice, &computer_choice
+        );
+        let result = e.win(user_choice, computer_choice);
+        stats.update_stats(result);
+        message(result);
+        exit(&lang, &stats);
     }
-    println!("{:?}", stats);
+}
 
+fn exit(lang: &Lang, stats: &Stats) {
+    let x = input(lang.exit.as_str());
+    if x.trim().to_lowercase() == "y" {
+        stats.clone().show();
+        process::exit(0);
+    }
 }
