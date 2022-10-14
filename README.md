@@ -26,6 +26,13 @@ To add new language, there is a few step to do:
  - For adding new text in translation file, the key must be in english format and uppercase.
  - After that, you must insert into `Lang` struct the key with `String` type for the value.
  
+
+## SCREENSHOTS
+![Screen one 'FR'](./assets/img_1.png "'FR' Screem one of the Game")  
+![Screen two 'FR'](./assets/img_2.png "'FR' Screem two of the Game")  
+![Screen three 'MG'](./assets/img_3.png "'MG' Screem three of the Game")  
+![Screen four 'MG'](./assets/img_4.png "'MG' Screem four of the Game")  
+
 ## CONTRIBUTORS
 - [Chrys Rakotonimanana](https://github.com/chrys-elrak)
 
