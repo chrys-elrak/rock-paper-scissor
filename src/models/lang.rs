@@ -1,12 +1,12 @@
+use serde::Deserialize;
 use std::fs;
-use serde::{Deserialize};
+use ucli::{item::Item, select::Select, ucli::Main};
 
-use crate::helpers::get_input::input;
-
+#[derive(Clone)]
 pub enum AvalaibleLang {
     EN,
     FR,
-    MG
+    MG,
 }
 
 #[derive(Debug, Deserialize, Clone)]
@@ -25,7 +25,7 @@ pub struct Lang {
     #[serde(alias = "EXIT")]
     pub exit: String,
     #[serde(alias = "LOADING")]
-    pub loading:String,
+    pub loading: String,
     #[serde(alias = "YOU")]
     pub you: String,
     #[serde(alias = "COMPUTER")]
@@ -63,13 +63,15 @@ impl Lang {
     }
 
     pub fn get_lang() -> Self {
-        let lang = match input("Choose your language: [fr/mg/EN]").as_str() {
-            "en" => Lang::new(AvalaibleLang::EN),
-            "fr" => Lang::new(AvalaibleLang::FR),
-            "mg" => Lang::new(AvalaibleLang::MG),
-            _ => Lang::new(AvalaibleLang::EN),
-        };
-        lang
+        let lang = Main::new(&Select::new(vec![
+            Item::new("English".to_string(), Lang::new(AvalaibleLang::EN), false),
+            Item::new("Français".to_string(), Lang::new(AvalaibleLang::FR), false),
+            Item::new("Malagasy".to_string(), Lang::new(AvalaibleLang::MG), false),
+        ]))
+        .prompt("Choose your language".to_string())
+        .render()
+        .get();
+        lang.unwrap()
     }
 }
 
