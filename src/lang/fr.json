@@ -7,9 +7,11 @@
     "EXIT": "Quitter 🚪 [y/N]",
     "YOU": "Vous",
     "COMPUTER": "Ordinateur",
-    "WIN": "Gagne",
-    "LOSE": "Perd",
-    "DRAW": "Egalité",
+    "WIN": "Vous avez gagné! 🎉",
+    "LOSE": "Vous avez perdu! 😭",
+    "DRAW": "On est a égalité 🤝",
     "WELCOME": "Bienvenue au jeu de Pierre, Feuille, Ciseaux, Spock, Lézard !",
-    "LOADING": "Chargement..."
+    "LOADING": "Chargement...",
+    "I_CHOOSE": "Vous avez choisi",
+    "YOU_CHOOSE": "J'ai choisi"
 }

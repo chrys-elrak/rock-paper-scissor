@@ -23,6 +23,8 @@ pub struct Lang {
     pub win: String,
     pub lose: String,
     pub welcome: String,
+    pub i_choose: String,
+    pub you_choose: String,
 }
 
 impl Lang {

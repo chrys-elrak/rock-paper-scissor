@@ -7,9 +7,11 @@
     "EXIT": "Exit 🚪 [y/N]",
     "YOU": "You",
     "COMPUTER": "Computer",
-    "WIN": "Win",
-    "LOSE": "Lose",
-    "DRAW": "Draw",
+    "WIN": "You win! 🎉",
+    "LOSE": "You lose! 😭",
+    "DRAW": "Draw 🤝",
     "WELCOME": "Welcome to Rock Paper Scissors Spock Lizard",
-    "LOADING": "Loading..."
+    "LOADING": "Loading...",
+    "I_CHOOSE": "I choose",
+    "YOU_CHOOSE": "You choose"
 }

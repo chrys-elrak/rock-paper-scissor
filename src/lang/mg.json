@@ -7,9 +7,11 @@
     "EXIT": "Hivoaka 🚪 [y/N]",
     "YOU": "Ianao",
     "COMPUTER": "Solosaina",
-    "WIN": "Mandresy",
-    "LOSE": "Resy",
-    "DRAW": "Sahala",
+    "WIN": "Nandresy ianao! 🎉",
+    "LOSE": "Resy ianao! 😭",
+    "DRAW": "Sahala isika 🤝",
     "WELCOME": "Tongasoa eto amin'ny Vato Taratasy Hery Spock Katsatsaka!",
-    "LOADING": "Miandrasa kely..."
+    "LOADING": "Miandrasa kely...",
+    "I_CHOOSE": "Izaho nisafidy",
+    "YOU_CHOOSE": "Ianao nisafidy"
 }
