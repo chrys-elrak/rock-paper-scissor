@@ -1,0 +1,21 @@
+{
+    "ROCK": "Stein 🪨",
+    "PAPER": "Papier 🧻",
+    "SCISSORS": "Schere ✂️ ",
+    "SPOCK": "Spock 🖖",
+    "LIZARD": "Eidechse 🦎",
+    "EXIT": "Aufgeber 🚪 [y/N]",
+    "YOU": "Sie",
+    "COMPUTER": "Computer",
+    "WIN": "Du hast gewonnen! 🎉",
+    "LOSE": "Du hast verloren! 😭",
+    "DRAW_MESSAGE": "Wir sind gleich 🤝",
+    "DRAW": " Gleichberechtigung",
+    "WELCOME": "🎮 Willkommen beim Spiel 'Stein, Papier, Schere“.' 🎮",
+    "LOADING": "Wird geladen...",
+    "YOU_CHOOSE": "Deine Wahl",
+    "I_CHOOSE": "Ich habe mich entschieden",
+    "INPUT_NOT_RECOGNIZED": "❌ Eingabe nicht erkannt! ❌",
+    "GIVE_INPUT": "🤔 Geben Sie Ihre Wahl ein"
+
+}
