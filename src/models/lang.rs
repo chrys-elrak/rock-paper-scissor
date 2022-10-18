@@ -7,6 +7,7 @@ pub enum AvalaibleLang {
     EN,
     FR,
     MG,
+    DE,
 }
 
 #[derive(Debug, Deserialize, Clone)]
@@ -56,6 +57,7 @@ impl Lang {
             AvalaibleLang::EN => "src/lang/en.json",
             AvalaibleLang::FR => "src/lang/fr.json",
             AvalaibleLang::MG => "src/lang/mg.json",
+            AvalaibleLang::DE => "src/lang/de.json",
         };
         let file = fs::read_to_string(file).expect("Something went wrong reading the file");
         let l: Lang = serde_json::from_str(&file).expect("Something went wrong parsing the file");
@@ -67,6 +69,7 @@ impl Lang {
             Item::new("English".to_string(), Lang::new(AvalaibleLang::EN), false),
             Item::new("Français".to_string(), Lang::new(AvalaibleLang::FR), false),
             Item::new("Malagasy".to_string(), Lang::new(AvalaibleLang::MG), false),
+            Item::new("Deutsch".to_string(), Lang::new(AvalaibleLang::DE), false),
         ]))
         .prompt("Choose your language".to_string())
         .render()
