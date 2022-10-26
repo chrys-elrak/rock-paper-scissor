@@ -1,8 +1,11 @@
 mod enums;
 mod helpers;
 mod models;
+use std::fs::{self, File};
+use std::io::Write;
+use std::path::Path;
 use std::process::Command;
-use std::{process, vec};
+use std::{env::var, process, vec};
 
 use colored::Colorize;
 use rand::{self, Rng};
@@ -13,12 +16,23 @@ use crate::helpers::{get_choice::choice, get_input::input, get_winner::message};
 use crate::models::{element::Element, lang::Lang, stats::Stats};
 
 fn main() {
+    // Check if a pesistent file name is set
+    let stats_file = var("ROCK_PAPER_SCISSORS_STATS").unwrap_or("rock_paper_scissors.db".into());
+    let stats_path = Path::new(&stats_file);
+    if !stats_path.exists() {
+        let mut file = File::create(&stats_path).expect(format!("Failed to create {}", stats_file).as_str());
+        file.write_all(b"0,0,0").expect("Unable to write to stats file!");
+    };
+    let persistent_stats = fs::read_to_string(&stats_path)
+        .expect(format!("Failed to read from file {}", stats_file).as_str());
+    let persistent_stats = persistent_stats.trim().replace("\n", "");
+    // Format: Computer,Player,Draw
+    let persistent_stats: Vec<usize> = persistent_stats.split(",").map(|v| v.parse::<usize>().unwrap()).collect::<Vec<usize>>();
     // Get the language
     let lang = Lang::get_lang();
     // Print the welcome message
-    println!("\n{}\n", lang.welcome.yellow());
     // init stats
-    let mut stats = Stats::new(lang.to_owned());
+    let mut stats = Stats::new(lang.to_owned(), persistent_stats);
     // Init element [Rock, Paper, Scissors, Lizard, Spock]
     let e = Element::new(&lang);
     // Show the header
@@ -34,8 +48,9 @@ fn main() {
         let user_choice;
         'GETINPUT: loop {
             let o = uMain::new(&options)
-            .prompt(lang.input.clone())
-            .render().get();
+                .prompt(lang.input.clone())
+                .render()
+                .get();
             // Get the user input and check if it's a valid choice
             user_choice = match o {
                 Some(choice) => choice,
@@ -63,7 +78,7 @@ fn main() {
             Choice::get_choice_from_id(user_choice.id.to_string().as_str()).unwrap(),
             computer_choice,
         );
-        stats.update_stats(result);
+        stats.update_stats(result, stats_path);
         message(result, &lang);
         exit(&lang, &stats);
     }
