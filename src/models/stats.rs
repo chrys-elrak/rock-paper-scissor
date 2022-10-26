@@ -1,6 +1,11 @@
-use std::fmt::Display;
-use colored::Colorize;
 use super::lang::Lang;
+use colored::Colorize;
+use std::{
+    fmt::Display,
+    fs::OpenOptions,
+    io::{Seek, SeekFrom, Write},
+    path::Path,
+};
 
 #[derive(Clone)]
 pub struct Stats {
@@ -22,20 +27,28 @@ impl Display for Stats {
 }
 
 impl Stats {
-    pub fn new(lang: Lang) -> Self {
+    pub fn new(lang: Lang, stats: Vec<usize>) -> Self {
         Stats {
-            computer: 0,
-            user: 0,
-            draws: 0,
+            computer: stats[0],
+            user: stats[1],
+            draws: stats[2],
             lang,
         }
     }
-    pub fn update_stats(&mut self, result: Option<bool>) {
+    pub fn update_stats(&mut self, result: Option<bool>, path: &Path) {
+        let mut file = OpenOptions::new()
+            .write(true)
+            .open(path)
+            .expect("Unable to write to database");
+
         match result {
             Some(true) => self.user += 1,
             Some(false) => self.computer += 1,
             None => self.draws += 1,
         }
+        file.seek(SeekFrom::Start(0)).unwrap();
+        file.write_all(format!("{},{},{}", self.computer, self.user, self.draws).as_bytes())
+            .unwrap();
     }
     pub fn show(self) {
         println!("\n{}\n", self);
