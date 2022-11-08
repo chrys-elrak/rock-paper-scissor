@@ -4,7 +4,7 @@
     "SCISSORS": "Schere ✂️",
     "SPOCK": "Spock 🖖",
     "LIZARD": "Echse 🦎",
-    "EXIT": "Beenden 🚪 [y/N]",
+    "EXIT": "Beenden 🚪",
     "YOU": "Du",
     "COMPUTER": "Rechner",
     "WIN": "Sieg",
@@ -16,5 +16,9 @@
     "YOU_CHOOSE": "Deine Wahl",
     "I_CHOOSE": "Meine Wahl",
     "INPUT_NOT_RECOGNIZED": "❌ Eingabe wurde nicht erkannt! ❌",
-    "GIVE_INPUT": "🤔 Geben Sie Ihre Wahl ein"
+    "GIVE_INPUT": "🤔 Geben Sie Ihre Wahl ein",
+    "QUIT": "Quit",
+    "CONTINUE": "Continue",
+    "YES": "Yes",
+    "NO": "No"
 }

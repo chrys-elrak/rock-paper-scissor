@@ -4,7 +4,7 @@
     "SCISSORS": "Scissors ✂️ ",
     "SPOCK": "Spock 🖖",
     "LIZARD": "Lizard 🦎",
-    "EXIT": "Exit 🚪 [y/N]",
+    "EXIT": "Exit 🚪",
     "YOU": "You",
     "COMPUTER": "Computer",
     "WIN": "You win! 🎉",
@@ -16,5 +16,9 @@
     "I_CHOOSE": "I choose",
     "YOU_CHOOSE": "You choose",
     "INPUT_NOT_RECOGNIZED": "❌ Input not recognized! ❌",
-    "GIVE_INPUT": "🤔 Please give your input"
+    "GIVE_INPUT": "🤔 Please give your input",
+    "QUIT": "Exit",
+    "CONTINUE": "Continue",
+    "YES": "Yes",
+    "NO": "No"
 }

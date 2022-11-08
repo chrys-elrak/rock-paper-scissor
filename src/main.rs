@@ -12,7 +12,7 @@ use rand::{self, Rng};
 use ucli::{item::Item as uItem, select::Select as uSelect, ucli::Main as uMain};
 
 use crate::enums::choice::Choice;
-use crate::helpers::{get_choice::choice, get_input::input, get_winner::message};
+use crate::helpers::{get_choice::choice, get_winner::message};
 use crate::models::{element::Element, lang::Lang, stats::Stats};
 
 fn main() {
@@ -85,11 +85,19 @@ fn main() {
 }
 
 fn exit(lang: &Lang, stats: &Stats) {
-    let x = input(lang.exit.as_str());
-    if x.trim().to_lowercase() == "y" {
-        clear();
-        stats.clone().show();
-        process::exit(0);
+    let opt = uSelect::new(vec![
+        uItem::new(lang.no.clone(), true, false),
+        uItem::new(lang.yes.clone(), false, false),
+    ]);
+    if let Some(x) = uMain::new(&opt)
+        .prompt(lang.exit.clone())
+        .render()
+        .get() {
+        if !x {
+            clear();
+            stats.clone().show();
+            process::exit(0);
+        }
     }
 }
 
