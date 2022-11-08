@@ -49,6 +49,14 @@ pub struct Lang {
     pub input_failed: String,
     #[serde(alias = "GIVE_INPUT")]
     pub input: String,
+    #[serde(alias = "QUIT")]
+    pub quit: String,
+    #[serde(alias = "CONTINUE")]
+    pub continue_: String,
+    #[serde(alias = "YES")]
+    pub yes: String,
+    #[serde(alias = "NO")]
+    pub no: String,
 }
 
 impl Lang {

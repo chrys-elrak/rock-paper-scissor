@@ -4,7 +4,7 @@
     "SCISSORS": "Hety ✂️ ",
     "SPOCK": "Spock 🖖",
     "LIZARD": "Katsatsaka 🦎",
-    "EXIT": "Hivoaka 🚪 [y/N]",
+    "EXIT": "Hivoaka 🚪",
     "YOU": "Ianao",
     "COMPUTER": "Solosaina",
     "WIN": "Nandresy ianao! 🎉",
@@ -16,5 +16,9 @@
     "I_CHOOSE": "Izaho nisafidy",
     "YOU_CHOOSE": "Ianao nisafidy",
     "INPUT_NOT_RECOGNIZED": "❌ Tsy fantatra ny zavatra nampidirinao ❌",
-    "GIVE_INPUT": "🤔 Ampidiro ny safidinao"
+    "GIVE_INPUT": "🤔 Ampidiro ny safidinao",
+    "QUIT": "Hiala",
+    "CONTINUE": "Hanoy",
+    "YES": "Eny",
+    "NO": "Tsia"
 }
