@@ -1,4 +1,4 @@
-use std::{ io::{self, Write} };
+use std::io::{self, Write};
 use colored::Colorize;
 
 pub fn input(message: &str) -> String {
