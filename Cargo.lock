@@ -325,9 +325,9 @@ dependencies = [
 
 [[package]]
 name = "ucli"
-version = "0.1.0"
+version = "0.2.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "79e9993806ceaa2d45b39d040fe65bd56f76ac8620235f732a1bbaf8c7d44a1b"
+checksum = "b484031f0495ce79cd748a68325466062b78a9d23c0b44013b08b4e15bdd2139"
 dependencies = [
  "crossterm",
 ]
