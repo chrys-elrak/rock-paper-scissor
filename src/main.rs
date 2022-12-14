@@ -7,9 +7,11 @@ use std::path::Path;
 use std::process::Command;
 use std::{env::var, process, vec};
 
-use colored::Colorize;
 use rand::{self, Rng};
-use ucli::{item::Item as uItem, select::Select as uSelect, ucli::Main as uMain};
+use ucli::item::UCLISelectItem;
+use ucli::select::UCLISelect;
+use ucli::ucli::Main;
+// use ucli::{item::Item as uItem, select::Select as uSelect, ucli::Main as uMain};
 
 use crate::enums::choice::Choice;
 use crate::helpers::{get_choice::choice, get_winner::message};
@@ -20,14 +22,19 @@ fn main() {
     let stats_file = var("ROCK_PAPER_SCISSORS_STATS").unwrap_or("rock_paper_scissors.db".into());
     let stats_path = Path::new(&stats_file);
     if !stats_path.exists() {
-        let mut file = File::create(&stats_path).expect(format!("Failed to create {}", stats_file).as_str());
-        file.write_all(b"0,0,0").expect("Unable to write to stats file!");
+        let mut file =
+            File::create(&stats_path).expect(format!("Failed to create {}", stats_file).as_str());
+        file.write_all(b"0,0,0")
+            .expect("Unable to write to stats file!");
     };
     let persistent_stats = fs::read_to_string(&stats_path)
         .expect(format!("Failed to read from file {}", stats_file).as_str());
     let persistent_stats = persistent_stats.trim().replace("\n", "");
     // Format: Computer,Player,Draw
-    let persistent_stats: Vec<usize> = persistent_stats.split(",").map(|v| v.parse::<usize>().unwrap()).collect::<Vec<usize>>();
+    let persistent_stats: Vec<usize> = persistent_stats
+        .split(",")
+        .map(|v| v.parse::<usize>().unwrap())
+        .collect::<Vec<usize>>();
     // Get the language
     let lang = Lang::get_lang();
     // Print the welcome message
@@ -39,36 +46,29 @@ fn main() {
     let mut v = vec![];
     for i in 0..e.items.len() {
         let item = &e.items[i];
-        v.push(uItem::new(item.name.clone(), item, false));
+        let item = item.clone();
+        // v.push(uItem::new(item.name.clone(), item, false));
+        v.push(UCLISelectItem {
+            text: item.name.to_string(),
+            value: item,
+            disabled: false,
+        });
     }
-    println!("{:?}", v);
-    let options = uSelect::new(v);
-    // MAIN LOOP
+    let options = UCLISelect::new(v);
+    // // MAIN LOOP
     loop {
-        let user_choice;
-        'GETINPUT: loop {
-            let o = uMain::new(&options)
-                .prompt(lang.input.clone())
-                .render()
-                .get();
-            // Get the user input and check if it's a valid choice
-            user_choice = match o {
-                Some(choice) => choice,
-                None => {
-                    let err = format!("\n{}\n", lang.input_failed.red());
-                    println!("{}", err);
-                    exit(&lang, &stats);
-                    continue 'GETINPUT;
-                }
-            };
-            break 'GETINPUT;
-        }
+        let user_choice = Main::new(options.clone())
+            .set_default_value(0)
+            .set_prompt(lang.input.clone())
+            .render(false)
+            .get_value()
+            .unwrap();
         let x = rand::thread_rng().gen_range(1..e.items.len());
         let computer_choice = choice(x.to_string().as_str()).unwrap();
         // loading(&lang.loading, 100);
         clear();
         println!(
-            "\n{}: {} & {}: {}",
+            "\n\n\n\n{}: {} & {}: {}",
             lang.you_choose,
             Choice::get_string_from_id(&user_choice.id, &lang),
             lang.i_choose,
@@ -85,20 +85,21 @@ fn main() {
 }
 
 fn exit(lang: &Lang, stats: &Stats) {
-    let opt = uSelect::new(vec![
-        uItem::new(lang.no.clone(), true, false),
-        uItem::new(lang.yes.clone(), false, false),
+    let opt = UCLISelect::new(vec![
+        UCLISelectItem::new(lang.no.clone(), true, false),
+        UCLISelectItem::new(lang.yes.clone(), false, false),
     ]);
-    if let Some(x) = uMain::new(&opt)
-        .prompt(lang.exit.clone())
-        .render()
-        .get() {
-        if !x {
-            clear();
-            stats.clone().show();
-            process::exit(0);
-        }
+    let x = Main::new(opt)
+    .set_default_value(0)
+    .set_prompt(lang.exit.clone())
+    .render(false)
+    .get_value()
+    .unwrap();
+    if !x {
+        stats.clone().show();
+        process::exit(0);
     }
+    clear();
 }
 
 fn clear() {

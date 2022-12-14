@@ -1,6 +1,9 @@
 use serde::Deserialize;
 use std::fs;
-use ucli::{item::Item, select::Select, ucli::Main};
+use ucli::ucli::Main;
+// use ucli::{item::Item, select::Select, ucli::Main};
+use ucli::item::UCLISelectItem;
+use ucli::select::UCLISelect;
 
 #[derive(Clone)]
 pub enum AvalaibleLang {
@@ -73,16 +76,17 @@ impl Lang {
     }
 
     pub fn get_lang() -> Self {
-        let lang = Main::new(&Select::new(vec![
-            Item::new("English".to_string(), Lang::new(AvalaibleLang::EN), false),
-            Item::new("Français".to_string(), Lang::new(AvalaibleLang::FR), false),
-            Item::new("Malagasy".to_string(), Lang::new(AvalaibleLang::MG), false),
-            Item::new("Deutsch".to_string(), Lang::new(AvalaibleLang::DE), false),
-        ]))
-        .prompt("Choose your language".to_string())
-        .render()
-        .get();
-        lang.unwrap()
+        let options = UCLISelect::new(vec![
+            UCLISelectItem::new("English".to_string(), Lang::new(AvalaibleLang::EN), false),
+            UCLISelectItem::new("Français".to_string(), Lang::new(AvalaibleLang::FR), false),
+            UCLISelectItem::new("Malagasy".to_string(), Lang::new(AvalaibleLang::MG), false),
+            UCLISelectItem::new("Deutsch".to_string(), Lang::new(AvalaibleLang::DE), false),
+        ]);
+        Main::new(options)
+            .set_default_value(0)
+            .render(true)
+            .get_value()
+            .unwrap()
     }
 }
 
