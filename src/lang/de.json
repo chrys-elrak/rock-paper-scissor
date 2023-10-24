@@ -17,8 +17,8 @@
     "I_CHOOSE": "Meine Wahl",
     "INPUT_NOT_RECOGNIZED": "❌ Eingabe wurde nicht erkannt! ❌",
     "GIVE_INPUT": "🤔 Geben Sie Ihre Wahl ein",
-    "QUIT": "Quit",
-    "CONTINUE": "Continue",
-    "YES": "Yes",
-    "NO": "No"
+    "QUIT": "Gehen",
+    "CONTINUE": "Fortsetzen",
+    "YES": "Ja",
+    "NO": "Nein"
 }
